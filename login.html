@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login - Market Mentor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('https://as1.ftcdn.net/v2/jpg/05/60/50/56/1000_F_560505674_chx0JsbYVdgM5z2EW4HfO7KHCA8RuRIF.jpg'); /* Replace with your own image URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+h1{
+
+    color: white;
+    text-align: center;
+}
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0.9; 
+            background: solid white transparent 25px ;
+            border-radius: 50% 20% / 10% 40%;
+        }
+
+         h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-toggle {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form-toggle a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .form-toggle a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+        h1{
+            padding: 21px;
+        }
+       
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Market Mentor</h1>
+        <h3></h3>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <button type="submit">Login</button>
+            
+        </form>
+        <div class="form-toggle">
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            // Get the registered user from localStorage
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+    
+            if (!storedUser) {
+                alert("No registered user found. Please register first.");
+                return;
+            }
+    
+            // Check if the email and password match
+            if (email === storedUser.email && password === storedUser.password) {
+                alert(`Login successful! Welcome, ${storedUser.name}`);
+                // Redirect to Streamlit app (change the URL to your deployed Streamlit app URL)
+                window.location.href = "http://localhost:8501"; // Replace this with your actual Streamlit URL
+            } else {
+                alert("Invalid email or password.");
+            }
+        });
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register - Market Mentor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('https://as1.ftcdn.net/v2/jpg/05/60/50/56/1000_F_560505674_chx0JsbYVdgM5z2EW4HfO7KHCA8RuRIF.jpg'); /* Replace with your own image URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1{
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            /* background-color: white; */
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-toggle {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form-toggle a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .form-toggle a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Market Mentor</h1>
+        <!-- <h3>Register</h3> -->
+        <form id="register-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+
+            <button type="submit">Register</button>
+        </form>
+        <div class="form-toggle">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Validation
+            if (!name || !email || !password || !confirmPassword) {
+                alert("All fields are required.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            // Save the user data to localStorage
+            const user = { name, email, password };
+
+            // Store the user details in localStorage
+            localStorage.setItem('user', JSON.stringify(user));
+
+            alert("Registration successful!");
+            window.location.href = "login.html"; // Redirect to the login page after successful registration
+        });
+    </script>
+
+</body>
+</html>
